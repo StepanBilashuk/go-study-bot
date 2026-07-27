@@ -3,10 +3,9 @@
 *.env
 !.env.example
 
-# Build output
+# Build output (anchored to repo root so it doesn't match the cmd/prepbot pkg)
 /bin/
 /prepbot
-prepbot
 
 # OS / editor cruft
 .DS_Store
