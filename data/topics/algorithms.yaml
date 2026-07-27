@@ -145,3 +145,11 @@
   depends_on: [arrays-hashing]
   gate: "matrix rotation, GCD, overflow-safe math"
   est_hours: 4
+
+- slug: traveling-salesman
+  track: algorithms
+  name: Traveling Salesman & routing (TSP/VRP)
+  priority: 19
+  depends_on: [dynamic-programming, advanced-graphs]
+  gate: "brute force O(n!), Held-Karp DP O(2^n·n²), and a heuristic (nearest-neighbor/2-opt)"
+  est_hours: 5

@@ -26,6 +26,7 @@ Content personalization (real-time) → /design news-feed (ranking)
 Graph partitioning & data locality → /learn partitioning · /learn advanced-graphs
 Job scheduling service / design an API → /design job-scheduler · /learn api-design
 OOD: Parking Lot, Minesweeper → /learn object-oriented-design · /design parking-lot
+Routing / dispatch optimization (TSP/VRP) → /learn traveling-salesman
 Always: /design framework (RESHADED)
 
 ▸ Technical discussion (concepts, deep-dive)
@@ -37,6 +38,8 @@ Forward vs reverse proxy / ingress · API gateway vs load balancer → /learn pr
 How DNS resolution works → /learn dns
 Microservices vs monolith (latency, IPC cost) → /learn microservices-patterns
 SQL vs NoSQL · DB indexes (read vs write) · eventual vs strong consistency → /learn storage-retrieval · /learn consistency-consensus
+REST vs RabbitMQ vs gRPC vs WebSocket → /learn communication-styles
+Scaling a DB under load / high-load DB → /learn scaling-databases
 Web-app security / zero-day incident response → /learn security-auth · /learn observability
 
 ▸ Behavioral (ownership, communication, growth)

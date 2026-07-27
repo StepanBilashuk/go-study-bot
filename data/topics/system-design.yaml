@@ -249,3 +249,83 @@
   depends_on: []
   gate: "deadlock's 4 conditions + prevent/avoid/detect; race conditions; mutex vs semaphore; atomics/CAS"
   est_hours: 4
+
+- slug: communication-styles
+  track: system-design
+  name: Comms styles — REST vs gRPC vs RabbitMQ vs WebSocket
+  priority: 32
+  depends_on: [api-design, message-queues]
+  gate: "sync vs async; request-response vs RPC vs pub/sub vs streaming; when to use each"
+  est_hours: 3
+
+- slug: reconciliation
+  track: system-design
+  name: Reconciliation (ledger vs external)
+  priority: 33
+  depends_on: [ledger-accounting, idempotency]
+  gate: "internal vs external match, drift classes, idempotent re-processing, exceptions"
+  est_hours: 4
+
+- slug: scaling-databases
+  track: system-design
+  name: Scaling databases under load
+  priority: 34
+  depends_on: [storage-retrieval, partitioning, replication, caching]
+  gate: "pooling, read replicas, sharding, indexing, denormalization/CQRS, hot partitions"
+  est_hours: 5
+
+- slug: database-selection
+  track: system-design
+  name: Choosing a database (Postgres/Mongo/ClickHouse/…)
+  priority: 35
+  depends_on: [storage-retrieval, analytics-olap]
+  gate: "pick by data model + access pattern; when relational vs document vs columnar vs KV vs graph vs time-series"
+  est_hours: 4
+
+- slug: elasticsearch
+  track: system-design
+  name: Elasticsearch & ELK architecture
+  priority: 36
+  depends_on: [search-indexing]
+  gate: "shards/replicas, near-real-time, ELK for logs, ES as a CQRS read model, not a system of record"
+  est_hours: 3
+
+- slug: time-series-db
+  track: system-design
+  name: Time-series databases (Prometheus/Influx/Timescale)
+  priority: 37
+  depends_on: [storage-retrieval]
+  gate: "why a TSDB, cardinality, retention/downsampling, pull vs push metrics"
+  est_hours: 3
+
+- slug: graph-databases
+  track: system-design
+  name: Graph databases (Neo4j)
+  priority: 38
+  depends_on: [storage-retrieval]
+  gate: "index-free adjacency, multi-hop traversal, when a graph DB beats relational"
+  est_hours: 3
+
+- slug: nosql-data-modeling
+  track: system-design
+  name: NoSQL data modeling (access-pattern-first)
+  priority: 39
+  depends_on: [partitioning]
+  gate: "access-pattern-first, denormalization, single-table (DynamoDB), embed vs reference"
+  est_hours: 4
+
+- slug: event-driven-architecture
+  track: system-design
+  name: Event-driven architecture (event sourcing, CQRS)
+  priority: 40
+  depends_on: [message-queues, kafka-log-based]
+  gate: "events vs CRUD, event sourcing, CQRS, choreography vs orchestration"
+  est_hours: 5
+
+- slug: redis-patterns
+  track: system-design
+  name: Redis beyond caching (locks, leaderboards, streams)
+  priority: 41
+  depends_on: [caching]
+  gate: "data structures, sorted-set leaderboard, rate limiting, pub/sub, durability"
+  est_hours: 3
