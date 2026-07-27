@@ -18,3 +18,9 @@ Local (per-partition, scatter-gather reads) vs global (partitioned by term, cros
 
 ▸ Interview probes
 Explain rebalancing and hot-key handling; consistent hashing; local vs global secondary indexes.
+
+🔗 Further reading
+• Amazon Dynamo paper (consistent hashing, virtual nodes): https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf
+• Werner Vogels — Amazon's Dynamo (intro): https://www.allthingsdistributed.com/2007/10/amazons_dynamo.html
+• Arpit Bhayani — consistent hashing: https://arpitbhayani.me
+• ByteByteGo — consistent hashing (YouTube): https://www.youtube.com/@ByteByteGo

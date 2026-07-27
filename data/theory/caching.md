@@ -15,3 +15,8 @@ Keep hot/expensive data in a faster tier. The hard part isn't caching — it's i
 
 ▸ Interview probes
 Write-through vs write-behind vs cache-aside and their failure modes; how you invalidate; stampede protection.
+
+🔗 Further reading
+• Caching strategies and how to choose: https://codeahoy.com/2017/08/11/caching-strategies-and-how-to-choose-the-right-one/
+• Hussein Nasser — caching (YouTube): https://www.youtube.com/@hnasr
+• ByteByteGo — caching patterns: https://blog.bytebytego.com

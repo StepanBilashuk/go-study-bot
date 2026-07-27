@@ -16,3 +16,8 @@ Sorted input, "find the boundary/first/last", or minimize/maximize a value where
 
 ▸ Interview probes
 Search in Rotated Sorted Array, Find First/Last Position, Koko Eating Bananas, Median of Two Sorted Arrays.
+
+🔗 Further reading
+• NeetCode — patterns roadmap: https://neetcode.io/roadmap
+• NeetCode (YouTube, per-problem): https://www.youtube.com/@NeetCode
+• Tech Interview Handbook — algo cheatsheet: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/

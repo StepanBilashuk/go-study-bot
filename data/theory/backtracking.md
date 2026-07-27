@@ -15,3 +15,8 @@ At each step make a choice, recurse, then undo it (restore state) before the nex
 
 ▸ Interview probes
 Subsets, Permutations, Combination Sum, N-Queens, Word Search, Palindrome Partitioning. Exponential by nature — pruning is what's judged.
+
+🔗 Further reading
+• NeetCode — patterns roadmap: https://neetcode.io/roadmap
+• NeetCode (YouTube, per-problem): https://www.youtube.com/@NeetCode
+• Tech Interview Handbook — algo cheatsheet: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/

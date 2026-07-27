@@ -14,3 +14,9 @@ Overlapping subproblems + optimal substructure. Solve each subproblem once (memo
 
 ▸ Interview probes
 Climbing Stairs, Coin Change, House Robber, Longest Common Subsequence, Edit Distance, 0/1 Knapsack, Word Break. Say your state definition before coding.
+
+🔗 Further reading
+• NeetCode — patterns roadmap: https://neetcode.io/roadmap
+• NeetCode (YouTube, per-problem): https://www.youtube.com/@NeetCode
+• Tech Interview Handbook — algo cheatsheet: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/
+• Errichto — Dynamic Programming (YouTube): https://www.youtube.com/@Errichto

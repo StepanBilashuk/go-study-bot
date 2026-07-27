@@ -16,3 +16,8 @@ Conflict resolution, split-brain on failover, replication lag across regions, ch
 
 ▸ Interview probes
 Latency vs consistency trade-off per region; data residency; active-active vs active-passive; where you place the write leader.
+
+🔗 Further reading
+• Google Spanner — globally-distributed database (paper): https://research.google/pubs/pub39966/
+• CockroachDB — multi-region & geo-partitioning docs: https://www.cockroachlabs.com/docs/stable/multiregion-overview
+• ByteByteGo — multi-region architecture: https://blog.bytebytego.com

@@ -18,3 +18,8 @@ Picking too weak a level; assuming snapshot isolation stops write skew (it doesn
 
 ▸ Interview probes
 Name each isolation level and the anomaly it prevents; explain write skew; how MVCC works.
+
+🔗 Further reading
+• Designing Data-Intensive Applications, ch.7 (Kleppmann): https://dataintensive.net
+• Hermitage — isolation levels tested across DBs (Kleppmann): https://github.com/ept/hermitage
+• Jepsen — consistency & isolation models: https://jepsen.io/consistency

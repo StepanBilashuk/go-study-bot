@@ -13,3 +13,8 @@ An idempotent operation applied twice has the same effect as once. Essential bec
 
 ▸ Interview probes
 Design an idempotent payment endpoint unprompted; where you store the key; exactly-once vs at-least-once + dedup; handling concurrent duplicates.
+
+🔗 Further reading
+• Stripe — Designing robust APIs with idempotency: https://stripe.com/blog/idempotency
+• Stripe docs — idempotent requests: https://docs.stripe.com/api/idempotent_requests
+• Arpit Bhayani — idempotency (YouTube): https://www.youtube.com/@AsliEngineering

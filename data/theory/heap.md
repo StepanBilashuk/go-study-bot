@@ -16,3 +16,8 @@ Top/bottom K, k-th largest, merge k sorted streams, running median, schedule-by-
 
 ▸ Interview probes
 Kth Largest Element, Top-K Frequent, Merge K Sorted Lists, Find Median from Data Stream, Task Scheduler.
+
+🔗 Further reading
+• NeetCode — patterns roadmap: https://neetcode.io/roadmap
+• NeetCode (YouTube, per-problem): https://www.youtube.com/@NeetCode
+• Tech Interview Handbook — algo cheatsheet: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/

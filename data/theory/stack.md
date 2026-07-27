@@ -14,3 +14,8 @@ Keep elements in increasing (or decreasing) order; when the incoming element bre
 
 ▸ Interview probes
 Valid Parentheses, Daily Temperatures, Largest Rectangle in Histogram, Next Greater Element, Min Stack (track the running min alongside values).
+
+🔗 Further reading
+• NeetCode — patterns roadmap: https://neetcode.io/roadmap
+• NeetCode (YouTube, per-problem): https://www.youtube.com/@NeetCode
+• Tech Interview Handbook — algo cheatsheet: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/

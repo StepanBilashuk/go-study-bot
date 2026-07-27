@@ -16,3 +16,8 @@ Hierarchy, path/subtree problems, level-by-level processing, ordered lookups (BS
 
 ▸ Interview probes
 Level Order Traversal, Validate BST, Lowest Common Ancestor, Diameter of Binary Tree, Serialize/Deserialize, Balanced check.
+
+🔗 Further reading
+• NeetCode — patterns roadmap: https://neetcode.io/roadmap
+• NeetCode (YouTube, per-problem): https://www.youtube.com/@NeetCode
+• Tech Interview Handbook — algo cheatsheet: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/

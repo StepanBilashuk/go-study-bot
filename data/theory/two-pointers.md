@@ -15,3 +15,8 @@ Sorted array, pair/triplet summing to a target, in-place partition/dedup, palind
 
 ▸ Interview probes
 3Sum, Container With Most Water, Valid Palindrome, Remove Duplicates from Sorted Array, Trapping Rain Water. Say the invariant out loud ("left/right can only shrink the window").
+
+🔗 Further reading
+• NeetCode — patterns roadmap: https://neetcode.io/roadmap
+• NeetCode (YouTube, per-problem): https://www.youtube.com/@NeetCode
+• Tech Interview Handbook — algo cheatsheet: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/

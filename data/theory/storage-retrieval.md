@@ -15,3 +15,8 @@ Secondary indexes speed reads at the cost of writes. Clustered vs non-clustered.
 
 ▸ Interview probes
 Explain when LSM beats a B-tree and why; the three amplifications; how bloom filters help LSM reads.
+
+🔗 Further reading
+• Designing Data-Intensive Applications, ch.3 (Kleppmann): https://dataintensive.net
+• Arpit Bhayani — storage engines / LSM & B-trees: https://arpitbhayani.me
+• ByteByteGo — SSTable & LSM Tree (YouTube): https://www.youtube.com/@ByteByteGo

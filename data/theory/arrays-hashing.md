@@ -15,3 +15,8 @@ One pass, store each element (or its key) in a map; check membership/complement 
 
 ▸ Interview probes
 Two Sum, Group Anagrams, Top-K Frequent, Longest Consecutive Sequence, Valid Anagram. They watch whether you jump straight to O(n) with a map instead of brute force.
+
+🔗 Further reading
+• NeetCode — patterns roadmap: https://neetcode.io/roadmap
+• NeetCode (YouTube, per-problem): https://www.youtube.com/@NeetCode
+• Tech Interview Handbook — algo cheatsheet: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/

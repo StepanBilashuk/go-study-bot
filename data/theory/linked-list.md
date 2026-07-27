@@ -16,3 +16,8 @@ Reverse in place, cycle detection, find middle / kth-from-end, merge sorted list
 
 ▸ Interview probes
 Reverse Linked List, Linked List Cycle, Merge Two Sorted Lists, Remove Nth From End, LRU Cache (doubly-linked list + hash map).
+
+🔗 Further reading
+• NeetCode — patterns roadmap: https://neetcode.io/roadmap
+• NeetCode (YouTube, per-problem): https://www.youtube.com/@NeetCode
+• Tech Interview Handbook — algo cheatsheet: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/

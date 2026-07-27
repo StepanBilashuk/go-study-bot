@@ -13,3 +13,9 @@ Linearizability = recency on a single object; serializability = transactions equ
 
 ▸ Interview probes
 State CAP precisely (not the folk version); linearizability vs serializability; how Raft elects a leader and commits.
+
+🔗 Further reading
+• Kleppmann — Please stop calling databases CP or AP: https://martin.kleppmann.com/2015/05/11/please-stop-calling-databases-cp-or-ap.html
+• aphyr — Strong consistency models: https://aphyr.com/posts/313-strong-consistency-models
+• Jepsen — consistency model map: https://jepsen.io/consistency
+• Raft, visually explained: https://thesecretlivesofdata.com/raft/

@@ -15,3 +15,8 @@ Changing a field's type, reusing a tag number, making a new field required.
 
 ▸ Interview probes
 Forward vs backward compatibility with a concrete example; why Avro for pipelines; role of a schema registry.
+
+🔗 Further reading
+• Designing Data-Intensive Applications, ch.4 (Kleppmann): https://dataintensive.net
+• Confluent — Schema Registry & Avro: https://docs.confluent.io/platform/current/schema-registry/index.html
+• Martin Kleppmann on X: https://x.com/martinkl

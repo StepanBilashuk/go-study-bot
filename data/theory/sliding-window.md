@@ -15,3 +15,8 @@ A window over a contiguous run: expand the right edge, shrink the left to keep a
 
 ▸ Interview probes
 Longest Substring Without Repeating Characters, Minimum Window Substring, Max Sum Subarray of size K, Longest Repeating Character Replacement.
+
+🔗 Further reading
+• NeetCode — patterns roadmap: https://neetcode.io/roadmap
+• NeetCode (YouTube, per-problem): https://www.youtube.com/@NeetCode
+• Tech Interview Handbook — algo cheatsheet: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/

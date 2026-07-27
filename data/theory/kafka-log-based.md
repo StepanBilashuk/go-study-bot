@@ -17,3 +17,9 @@ Global ordering (only per-partition), consumer lag, rebalancing storms, exactly-
 
 ▸ Interview probes
 Explain exactly-once semantics and CDC unprompted; partitioning strategy; consumer groups; when to use a log vs a queue.
+
+🔗 Further reading
+• Confluent — Exactly-once semantics, how Kafka does it: https://www.confluent.io/blog/exactly-once-semantics-are-possible-heres-how-apache-kafka-does-it/
+• Jay Kreps — The Log (the classic): https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying
+• Kafka docs — delivery semantics: https://docs.confluent.io/kafka/design/delivery-semantics.html
+• Hussein Nasser — Kafka deep dives (YouTube): https://www.youtube.com/@hnasr

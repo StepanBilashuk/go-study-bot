@@ -15,3 +15,8 @@ When overloaded, signal upstream to slow down (429 + Retry-After, bounded queues
 
 ▸ Interview probes
 Token vs leaky bucket; distributed rate limiting with Redis; what backpressure is and why bounded queues matter.
+
+🔗 Further reading
+• Stripe — Scaling your API with rate limiters: https://stripe.com/blog/rate-limiters
+• Arpit Bhayani — rate limiting algorithms: https://arpitbhayani.me
+• ByteByteGo — design a rate limiter (YouTube): https://www.youtube.com/@ByteByteGo

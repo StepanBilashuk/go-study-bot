@@ -17,3 +17,8 @@ Sync (safe, slow) vs async (fast, can lose writes on failover); split-brain.
 
 ▸ Interview probes
 Name 3 lag anomalies and their fixes; sync vs async trade-off; quorum math R+W>N.
+
+🔗 Further reading
+• Designing Data-Intensive Applications, ch.5 (Kleppmann): https://dataintensive.net
+• Hussein Nasser — replication & consensus (YouTube): https://www.youtube.com/@hnasr
+• ByteByteGo — database replication: https://blog.bytebytego.com

@@ -17,3 +17,8 @@ A grid is a graph; dependencies/prerequisites (topo sort); connectivity/componen
 
 ▸ Interview probes
 Number of Islands, Course Schedule (topo), Clone Graph, Network Delay Time (Dijkstra), Word Ladder.
+
+🔗 Further reading
+• NeetCode — Graphs: https://neetcode.io/roadmap
+• William Fiset — Graph Theory (7h course): https://www.youtube.com/playlist?list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P
+• Tech Interview Handbook — graphs: https://www.techinterviewhandbook.org/algorithms/graph/
