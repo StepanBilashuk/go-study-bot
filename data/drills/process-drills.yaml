@@ -1,0 +1,26 @@
+# Daily process drills (spec §10). One drill every day, 3-5 minutes, regardless
+# of which content topic is scheduled. Prompt text lives in prompts/ (Step 3).
+
+- slug: estimation
+  kind: estimation
+  name: Back-of-envelope estimation
+  duration_min: 5
+  prompt: prompts/drill-estimation.yaml
+
+- slug: contradiction
+  kind: contradiction
+  name: Spot the contradiction
+  duration_min: 2
+  prompt: prompts/drill-contradiction.yaml
+
+- slug: clarify
+  kind: clarify
+  name: Clarifying questions
+  duration_min: 2
+  prompt: prompts/drill-clarify.yaml
+
+- slug: next-step
+  kind: next-step
+  name: Next correct step
+  duration_min: 3
+  prompt: prompts/drill-next-step.yaml

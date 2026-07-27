@@ -1,0 +1,6 @@
+# /drill: next correct step (spec §10).
+template: |
+  Write a short, truncated system-design interview transcript (5-8 lines) that
+  stops mid-way.
+  Ask the candidate: what is the correct next step, and why?
+  Do not reveal the answer. Keep it to a couple of minutes of work.

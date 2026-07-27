@@ -1,0 +1,11 @@
+# spec §12. Stretch, 2027+.
+slug: stripe
+name: Stripe
+locations: [Dublin]
+stack: [Ruby, Java, Go]
+interview_process: []          # high bar; details TBD (Phase 4)
+required_topics: [idempotency, transactions, consistency-consensus, kafka-log-based]
+values: []
+referral: false
+researched_at: 2026-07-27
+confidence: low

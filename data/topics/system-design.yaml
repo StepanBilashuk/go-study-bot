@@ -1,0 +1,99 @@
+# System design track (spec §9). Chapter 11 goes first: Kafka is the top gap
+# and Aiven is a target employer. priority == order; lower = earlier.
+# Book chapters live in resources.yaml, not here.
+
+- slug: kafka-log-based
+  track: system-design
+  name: Stream processing, log-based brokers, Kafka, CDC
+  priority: 1
+  depends_on: []
+  gate: "explain exactly-once semantics and CDC unprompted"
+  est_hours: 8
+
+- slug: storage-retrieval
+  track: system-design
+  name: LSM trees, B-trees, indexes
+  priority: 2
+  depends_on: []
+  gate: "explain when LSM beats B-tree and why"
+  est_hours: 6
+
+- slug: replication
+  track: system-design
+  name: Replication, lag, multi-leader, leaderless
+  priority: 3
+  depends_on: []
+  gate: "name 3 replication-lag anomalies and their fixes"
+  est_hours: 6
+
+- slug: partitioning
+  track: system-design
+  name: Partitioning, consistent hashing, rebalancing
+  priority: 4
+  depends_on: []
+  gate: "explain rebalancing and hot-key handling"
+  est_hours: 6
+
+- slug: transactions
+  track: system-design
+  name: Transactions, isolation levels, race conditions
+  priority: 5
+  depends_on: []
+  gate: "name each isolation level and the anomaly it prevents"
+  est_hours: 6
+
+- slug: encoding-evolution
+  track: system-design
+  name: Encoding and schema evolution
+  priority: 6
+  depends_on: []
+  gate: "forward vs backward compatibility with an example"
+  est_hours: 4
+
+- slug: distributed-trouble
+  track: system-design
+  name: Unreliable clocks, networks, partial failure
+  priority: 7
+  depends_on: []
+  gate: "explain why wall-clock ordering is unsafe"
+  est_hours: 5
+
+- slug: consistency-consensus
+  track: system-design
+  name: Linearizability, CAP, consensus
+  priority: 8
+  depends_on: []
+  gate: "state CAP precisely, not the folk version"
+  est_hours: 6
+
+- slug: caching
+  track: system-design
+  name: Caching strategies and invalidation
+  priority: 9
+  depends_on: []
+  gate: "write-through/behind/aside with failure modes"
+  est_hours: 4
+
+- slug: rate-limiting
+  track: system-design
+  name: Rate limiting and backpressure
+  priority: 10
+  depends_on: []
+  gate: "token bucket vs leaky bucket, distributed counters"
+  est_hours: 3
+
+- slug: idempotency
+  track: system-design
+  name: Idempotency and exactly-once at API level
+  priority: 11
+  depends_on: []
+  gate: "design an idempotent payment endpoint unprompted"
+  est_hours: 4
+
+- slug: geo-distribution
+  track: system-design
+  name: Geo-distribution and multi-region
+  priority: 12
+  depends_on: []
+  gate: "latency/consistency trade-off per region"
+  est_hours: 4

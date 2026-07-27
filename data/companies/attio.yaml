@@ -1,0 +1,11 @@
+# spec §12. EU-remote track, €95–125K. Verify Estonia EOR coverage before investing.
+slug: attio
+name: Attio
+locations: [London, EU remote]
+stack: [TypeScript, Node, GCP]
+interview_process: []          # EM 30 min -> CTO 45 min; details TBD (Phase 4)
+required_topics: [idempotency, caching, storage-retrieval]
+values: []
+referral: false
+researched_at: 2026-07-27
+confidence: low

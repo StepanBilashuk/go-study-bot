@@ -1,0 +1,91 @@
+# Algorithms track — NeetCode order. Do not reshuffle (spec §8).
+# priority == the NeetCode position; lower = earlier.
+# Realistic throughput at this depth is one topic per week.
+
+- slug: arrays-hashing
+  track: algorithms
+  name: Arrays & Hashing
+  priority: 1
+  depends_on: []
+  gate: "3 unseen mediums in 25 min each"
+  est_hours: 5
+
+- slug: two-pointers
+  track: algorithms
+  name: Two Pointers
+  priority: 2
+  depends_on: [arrays-hashing]
+  gate: "template from memory + 3 mediums"
+  est_hours: 4
+
+- slug: sliding-window
+  track: algorithms
+  name: Sliding Window
+  priority: 3
+  depends_on: [two-pointers]
+  gate: "fixed + variable window from memory"
+  est_hours: 5
+
+- slug: stack
+  track: algorithms
+  name: Stack
+  priority: 4
+  depends_on: [arrays-hashing]
+  gate: "monotonic stack from memory"
+  est_hours: 4
+
+- slug: binary-search
+  track: algorithms
+  name: Binary Search
+  priority: 5
+  depends_on: [arrays-hashing]
+  gate: "boundary-safe template from memory"
+  est_hours: 5
+
+- slug: linked-list
+  track: algorithms
+  name: Linked List
+  priority: 6
+  depends_on: [two-pointers]
+  gate: "reverse, cycle detect, merge, no hints"
+  est_hours: 4
+
+- slug: trees
+  track: algorithms
+  name: Trees
+  priority: 7
+  depends_on: [linked-list]
+  gate: "DFS/BFS traversals from memory"
+  est_hours: 6
+
+- slug: heap
+  track: algorithms
+  name: Heap / Priority Queue
+  priority: 8
+  depends_on: [trees]
+  gate: "top-K and merge-K without hints"
+  est_hours: 4
+
+- slug: backtracking
+  track: algorithms
+  name: Backtracking
+  priority: 9
+  depends_on: [trees]
+  gate: "subsets, permutations, combination sum"
+  est_hours: 5
+
+- slug: graphs
+  track: algorithms
+  name: Graphs
+  priority: 10
+  depends_on: [trees, heap]
+  gate: "BFS/DFS/topological sort + Dijkstra"
+  est_hours: 8
+
+- slug: dynamic-programming
+  track: algorithms
+  name: Dynamic Programming
+  priority: 11
+  depends_on: [graphs]
+  gate: "1D and 2D DP, 3 unseen mediums"
+  est_hours: 10

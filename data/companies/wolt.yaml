@@ -1,0 +1,11 @@
+# spec §12. Wave 1, highest probability.
+slug: wolt
+name: Wolt
+locations: [Helsinki, Stockholm]
+stack: [Kotlin, Python, Go]
+interview_process: []          # take-home; details TBD via /importcompany (Phase 4)
+required_topics: [arrays-hashing, trees, partitioning, caching]
+values: []
+referral: true
+researched_at: 2026-07-27
+confidence: low

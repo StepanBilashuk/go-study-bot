@@ -1,0 +1,10 @@
+.git
+.gitignore
+bin/
+*.env
+!.env.example
+deploy/
+README.md
+CLAUDE.md
+*.md
+.DS_Store

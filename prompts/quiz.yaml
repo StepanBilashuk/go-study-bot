@@ -1,0 +1,12 @@
+# /quiz (Phase 2): pattern-recognition quiz, 10 multiple-choice items.
+template: |
+  Generate a pattern-recognition quiz for the topic "{{topic}}" ({{track}}).
+  The goal is RECOGNITION, not solving: each item is a short problem scenario,
+  and the candidate must identify which technique/pattern/approach applies.
+
+  Produce exactly 10 items. Each has 4 plausible options (one correct) and a one
+  sentence explanation. Vary difficulty. Do not repeat scenarios.
+
+  Return strict JSON only, no prose, no markdown fences. "answer" is the 0-based
+  index of the correct option:
+  {"items":[{"question":"<scenario>","options":["a","b","c","d"],"answer":0,"explanation":"<why>"}]}

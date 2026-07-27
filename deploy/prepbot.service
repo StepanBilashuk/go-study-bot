@@ -1,0 +1,23 @@
+[Unit]
+Description=prepbot — interview-prep Telegram bot
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=prepbot
+WorkingDirectory=/opt/prepbot
+EnvironmentFile=/etc/prepbot.env
+ExecStart=/usr/local/bin/prepbot
+Restart=always
+RestartSec=5
+
+# Hardening — the bot needs no write access to disk (state lives in Postgres,
+# long polling is outbound only).
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

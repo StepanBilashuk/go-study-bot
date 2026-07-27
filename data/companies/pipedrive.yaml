@@ -1,0 +1,11 @@
+# spec §12. Blocker is English, not algorithms.
+slug: pipedrive
+name: Pipedrive
+locations: [Tallinn]
+stack: []
+interview_process: []          # cognitive test + home challenge + presentation; details TBD (Phase 4)
+required_topics: [arrays-hashing, trees, caching]
+values: []
+referral: false
+researched_at: 2026-07-27
+confidence: low

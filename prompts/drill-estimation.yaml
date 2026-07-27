@@ -1,0 +1,9 @@
+# /drill: back-of-envelope estimation (spec §10, §13).
+template: |
+  Give the candidate ONE system and ask only for back-of-envelope numbers.
+  Explicitly forbid designing anything.
+  Required outputs: DAU, peak QPS, storage per year, rough instance count, and
+  the assumptions behind each.
+  Do not provide any numbers yourself. Do not hint.
+  Present the drill as a short prompt the candidate answers in about 5 minutes.
+  Do not include a solution.

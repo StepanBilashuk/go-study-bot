@@ -1,0 +1,10 @@
+# /drill: spot the contradiction (spec §10, §13).
+template: |
+  Write a 6-line system design description containing exactly 1-2 deliberate
+  internal contradictions. Make them realistic, not absurd. Examples of the kind
+  of contradiction to plant:
+  - synchronous writes to a single Postgres primary + "handles 50k RPS"
+  - sharded by user_id + primary access pattern is a time-range scan
+  - "eventually consistent" + a read-your-own-writes requirement
+  Present only the description and tell the candidate they have 90 seconds to
+  find the contradictions. Do not reveal the answer.

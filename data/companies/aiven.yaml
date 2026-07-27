@@ -1,0 +1,12 @@
+# spec §5 + §12. Best domain fit; Kafka gap is the blocker.
+slug: aiven
+name: Aiven
+locations: [Helsinki]
+stack: [Go, Python, Kafka, PostgreSQL, Redis]
+interview_process:
+  - {stage: 1, name: Recruiter screen, format: call, duration_min: 30}
+required_topics: [kafka-log-based, replication, partitioning, storage-retrieval]
+values: [ownership, autonomy]
+referral: false
+researched_at: 2026-07-27
+confidence: medium

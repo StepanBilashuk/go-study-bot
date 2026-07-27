@@ -1,0 +1,13 @@
+# Books (spec §5). Edition is not decorative: the Russian translations paginate
+# differently from the originals, so page numbers in resources.yaml are edition-
+# specific. Keep chapter + section as the stable reference.
+
+ddia:
+  title: "Высоконагруженные приложения"
+  author: Kleppmann
+  edition: "ru-2018"
+
+grokking:
+  title: "Грокаем алгоритмы"
+  author: Bhargava
+  edition: "ru-2017"

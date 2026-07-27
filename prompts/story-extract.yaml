@@ -1,0 +1,19 @@
+# Extracts a STAR story from the candidate's free-text answer (/story, Phase 3).
+template: |
+  Extract a STAR story from the candidate's answer. Do not invent details.
+  A measurable result is REQUIRED: if the answer contains no number/metric, still
+  return the JSON but leave "metrics" empty so the bot can reject it.
+
+  Known competencies: ownership, mentoring, conflict, failure, tradeoff.
+
+  Return strict JSON only, no prose, no markdown fences:
+  {
+    "title":"<short>",
+    "situation":"<1-2 sentences>",
+    "task":"<what was needed>",
+    "action":"<what the candidate specifically did — use 'I', not 'we'>",
+    "result":"<outcome>",
+    "metrics":["<each measurable result, e.g. '85% -> 99%'>"],
+    "tech_tags":["<technologies involved>"],
+    "competencies":["<from the known list>"]
+  }

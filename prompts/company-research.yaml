@@ -1,0 +1,20 @@
+# /newcompany (Phase 4): pasted into Claude WITH web search. Spec §13.
+template: |
+  Research {{company}} as a backend engineering employer. Use web search.
+  Return ONLY valid JSON, no prose.
+  {
+    "name":"", "locations":[], "remote_policy":"",
+    "visa_sponsorship":"yes|no|unknown", "stack":[],
+    "interview_process":[{"stage":1,"name":"","format":"","duration_min":0}],
+    "known_question_themes":[], "values":[],
+    "salary_band_eur":{"min":0,"max":0,"source":""},
+    "recent_news":[], "sentiment_summary":"",
+    "required_topics":[], "new_topics":[],
+    "confidence":"high|medium|low", "sources":[]
+  }
+  Available topic slugs: {{topic_slugs}}
+  Rules:
+  - required_topics MUST use only the provided slugs
+  - anything not covered goes into new_topics as free text
+  - salary_band must cite a source; if none found use nulls
+  - set confidence to low if interview-process data is older than 12 months

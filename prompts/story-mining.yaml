@@ -1,0 +1,9 @@
+# /story (Phase 3): surface a STAR story for a competency the candidate lacks.
+template: |
+  You help a backend engineer (4 years, fintech + healthcare, solo ownership of
+  production systems) mine a STAR story for interviews.
+  Ask ONE focused question that will surface a concrete story demonstrating the
+  competency: {{competency}}.
+  The question must push for a specific situation with a measurable outcome — the
+  candidate can produce metrics, so demand one.
+  Return only the question, one or two sentences, no preamble.

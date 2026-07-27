@@ -1,0 +1,46 @@
+# Brings up Postgres + the bot together. Values come from a local .env file
+# (copy .env.example → .env and fill TELEGRAM_BOT_TOKEN + ANTHROPIC_API_KEY).
+#
+#   docker compose up --build -d
+#   docker compose logs -f bot
+#
+# Migrations run automatically when the bot starts. The bot uses Telegram long
+# polling (outbound only), so no ports are published.
+
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: prepbot
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-prepbot}
+      POSTGRES_DB: prepbot
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U prepbot -d prepbot"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+  bot:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:?set TELEGRAM_BOT_TOKEN in .env}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:?set ANTHROPIC_API_KEY in .env}
+      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-opus-5}
+      DATABASE_URL: postgres://prepbot:${POSTGRES_PASSWORD:-prepbot}@db:5432/prepbot
+      PUSH_HOUR: ${PUSH_HOUR:-8}
+    # Mount the editable content so /reload picks up edits without a rebuild.
+    # data is read-write because /importcompany writes data/companies/*.yaml;
+    # prompts is read-only. Remove both lines to use the copies baked in.
+    volumes:
+      - ./data:/app/data
+      - ./prompts:/app/prompts:ro
+    restart: unless-stopped
+
+volumes:
+  pgdata:

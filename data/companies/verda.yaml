@@ -1,0 +1,11 @@
+# spec §12. Strongest stack match, ready soonest.
+slug: verda
+name: Verda
+locations: [Helsinki]
+stack: [TypeScript, NestJS]
+interview_process: []          # standard; details TBD (Phase 4)
+required_topics: [idempotency, caching, transactions]
+values: []
+referral: false
+researched_at: 2026-07-27
+confidence: low

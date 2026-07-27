@@ -1,0 +1,7 @@
+# /drill: clarifying questions (spec §10).
+template: |
+  Give the candidate ONE vague system-design brief in a single sentence (e.g.
+  "Design a notification system").
+  Ask them to produce exactly 5 clarifying questions that narrow the problem, in
+  about 2 minutes.
+  Do not answer the questions yourself and do not design anything.

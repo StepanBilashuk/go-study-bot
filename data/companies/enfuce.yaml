@@ -1,0 +1,11 @@
+# spec §12. Direct match to his card-issuance work.
+slug: enfuce
+name: Enfuce
+locations: [Espoo]
+stack: [card issuing, fintech]
+interview_process: []          # standard; details TBD (Phase 4)
+required_topics: [idempotency, transactions, kafka-log-based]
+values: []
+referral: false
+researched_at: 2026-07-27
+confidence: low

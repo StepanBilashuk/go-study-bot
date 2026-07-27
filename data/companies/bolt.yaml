@@ -1,0 +1,11 @@
+# spec §12. Wave 1, 50/50 — the algo tail is the blocker.
+slug: bolt
+name: Bolt
+locations: [Tallinn]
+stack: [Go, Java]
+interview_process: []          # 5 stages, algorithmic gauntlet; details TBD (Phase 4)
+required_topics: [graphs, dynamic-programming, partitioning, geo-distribution]
+values: []
+referral: true
+researched_at: 2026-07-27
+confidence: low
