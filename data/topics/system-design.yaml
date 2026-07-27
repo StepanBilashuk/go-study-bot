@@ -209,3 +209,27 @@
   depends_on: [consistency-consensus]
   gate: "distributed lock pitfalls, leader election, ZooKeeper/etcd"
   est_hours: 4
+
+- slug: ledger-accounting
+  track: system-design
+  name: Ledgers & double-entry (money movement)
+  priority: 27
+  depends_on: [transactions, idempotency]
+  gate: "double-entry, immutability, idempotent postings, reconciliation"
+  est_hours: 5
+
+- slug: job-scheduling
+  track: system-design
+  name: Job scheduling & distributed cron
+  priority: 28
+  depends_on: [message-queues]
+  gate: "at-least-once, dedup, leader election, missed/duplicate runs"
+  est_hours: 4
+
+- slug: ai-system-design
+  track: system-design
+  name: AI / LLM system design (RAG, serving)
+  priority: 29
+  depends_on: [caching]
+  gate: "RAG pipeline, vector DB, semantic caching, model as an unreliable dependency"
+  est_hours: 4

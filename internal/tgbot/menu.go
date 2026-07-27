@@ -101,6 +101,8 @@ func botCommands() []models.BotCommand {
 		{Command: "drill", Description: "Process drill (paste the score back)"},
 		{Command: "debrief", Description: "Log a debrief: /debrief <text>"},
 		{Command: "boss", Description: "Mock brief (add 'behavioral')"},
+		{Command: "designs", Description: "System-design case studies (design X)"},
+		{Command: "prep", Description: "Per-company prep: /prep bolt|wolt|wise"},
 		{Command: "quiz", Description: "Recognition quiz: /quiz <slug>"},
 		{Command: "story", Description: "Mine a STAR story"},
 		{Command: "stories", Description: "Competency matrix"},

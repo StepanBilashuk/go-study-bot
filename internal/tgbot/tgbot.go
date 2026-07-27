@@ -115,8 +115,12 @@ func New(cfg config.Config, database *db.DB, defs *definitions.Definitions, ps *
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/cancel", bot.MatchTypeExact, b.handleCancel)
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/menu", bot.MatchTypeExact, b.handleMenu)
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/learn", bot.MatchTypePrefix, b.handleLearn)
-	// Inline "Learn" buttons under /today.
+	api.RegisterHandler(bot.HandlerTypeMessageText, "/designs", bot.MatchTypeExact, b.handleDesigns)
+	api.RegisterHandler(bot.HandlerTypeMessageText, "/design", bot.MatchTypePrefix, b.handleDesign)
+	api.RegisterHandler(bot.HandlerTypeMessageText, "/prep", bot.MatchTypePrefix, b.handlePrep)
+	// Inline buttons: topic theory + design case studies.
 	api.RegisterHandler(bot.HandlerTypeCallbackQueryData, "learn:", bot.MatchTypePrefix, b.handleLearnCallback)
+	api.RegisterHandler(bot.HandlerTypeCallbackQueryData, "design:", bot.MatchTypePrefix, b.handleDesignCallback)
 
 	return b, nil
 }

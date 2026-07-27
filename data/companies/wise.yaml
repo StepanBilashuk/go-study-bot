@@ -1,0 +1,13 @@
+# Wise (ex-TransferWise). SD-heavy, fintech: transfers, multi-currency, FX, fraud.
+slug: wise
+name: Wise
+locations: [Tallinn, London, Budapest]
+stack: [Java, Kotlin, Spring, PostgreSQL, Kafka]
+interview_process:
+  - {stage: 1, name: Recruiter screen, format: call, duration_min: 30}
+  - {stage: 2, name: System design + experience, format: call, duration_min: 90}
+required_topics: [ledger-accounting, idempotency, transactions, kafka-log-based, consistency-consensus]
+values: [ownership, customers]
+referral: false
+researched_at: 2026-07-28
+confidence: medium

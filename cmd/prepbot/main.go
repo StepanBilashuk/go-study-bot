@@ -43,6 +43,8 @@ func run() error {
 		"resources", len(defs.Resources),
 		"companies", len(defs.Companies),
 		"theory", len(defs.Theory),
+		"designs", len(defs.Designs),
+		"prep", len(defs.Prep),
 	)
 
 	ps, err := prompts.Load(cfg.PromptsDir)

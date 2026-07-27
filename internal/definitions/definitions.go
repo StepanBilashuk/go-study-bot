@@ -104,7 +104,9 @@ type Definitions struct {
 	Books     map[string]Book
 	Resources []Resource
 	Companies map[string]Company
-	Theory    map[string]string // slug -> seeded theory markdown
+	Theory    map[string]string // topic slug -> seeded theory markdown
+	Designs   map[string]string // design slug -> seeded "design X" walkthrough
+	Prep      map[string]string // company slug -> interview prep card
 }
 
 // Load reads and validates every definition file under dataDir. Missing
@@ -117,12 +119,20 @@ func Load(dataDir string) (*Definitions, error) {
 		Books:     make(map[string]Book),
 		Companies: make(map[string]Company),
 		Theory:    make(map[string]string),
+		Designs:   make(map[string]string),
+		Prep:      make(map[string]string),
 	}
 
 	if err := defs.loadTopics(filepath.Join(dataDir, "topics")); err != nil {
 		return nil, err
 	}
 	if err := defs.loadTheory(filepath.Join(dataDir, "theory")); err != nil {
+		return nil, err
+	}
+	if err := defs.loadMarkdown(filepath.Join(dataDir, "designs"), defs.Designs); err != nil {
+		return nil, err
+	}
+	if err := defs.loadMarkdown(filepath.Join(dataDir, "prep"), defs.Prep); err != nil {
 		return nil, err
 	}
 	if err := defs.loadDrills(filepath.Join(dataDir, "drills")); err != nil {
@@ -165,22 +175,27 @@ func (d *Definitions) loadTopics(dir string) error {
 }
 
 // loadTheory reads data/theory/<slug>.md into the Theory map (seeded in-bot
-// theory shown when a topic is tapped). A missing directory is fine.
+// theory shown when a topic is tapped).
 func (d *Definitions) loadTheory(dir string) error {
+	return d.loadMarkdown(dir, d.Theory)
+}
+
+// loadMarkdown reads every <name>.md under dir into dest, keyed by base name.
+// A missing directory is fine (nothing to load).
+func (d *Definitions) loadMarkdown(dir string, dest map[string]string) error {
 	if !fileExists(dir) {
 		return nil
 	}
 	matches, err := filepath.Glob(filepath.Join(dir, "*.md"))
 	if err != nil {
-		return fmt.Errorf("glob theory: %w", err)
+		return fmt.Errorf("glob %s: %w", dir, err)
 	}
 	for _, f := range matches {
 		content, err := os.ReadFile(f)
 		if err != nil {
 			return fmt.Errorf("read %s: %w", f, err)
 		}
-		slug := strings.TrimSuffix(filepath.Base(f), ".md")
-		d.Theory[slug] = string(content)
+		dest[strings.TrimSuffix(filepath.Base(f), ".md")] = string(content)
 	}
 	return nil
 }
