@@ -1,0 +1,11 @@
+# Tap a topic (/today buttons or /learn <slug>): emit a "teach me" prompt.
+template: |
+  Teach me "{{topic}}" for senior backend interviews ({{track}}).
+  Cover concisely but completely:
+  1. Core theory — the mental model and how it actually works.
+  2. When to apply it, and when NOT to — the recognition signals.
+  3. Key trade-offs and failure modes.
+  4. Best practices and the common pitfalls people get wrong.
+  5. What an interviewer probes at senior level — 2-3 example questions.
+  The gate I must pass: {{gate}}.
+  Use concrete examples. Keep it tight; I'll ask follow-ups.

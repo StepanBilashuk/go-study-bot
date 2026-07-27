@@ -22,7 +22,8 @@ message.
 | Command | Behaviour |
 |---------|-----------|
 | `/start` | Emit a calibration prompt for all topics → paste the scores JSON back to set confidence |
-| `/today` | 3 topics (algorithms · system design · review) + 1 drill + ≤2 resources each |
+| `/today` | 3 topics (algorithms · system design · review) + 1 drill; **tap a topic** to read its theory |
+| `/learn <slug>` | Seeded, in-bot theory: mental model, when to apply, pitfalls, interview probes |
 | `/done <slug>` | Advance a topic one stage if prerequisites are met; enters spaced repetition after stage 4 |
 | `/drill` | Emit a drill of your weakest kind → paste the `{score,outcome}` JSON back |
 | `/debrief <text>` | Emit an extraction prompt with your text → paste the gaps JSON back |

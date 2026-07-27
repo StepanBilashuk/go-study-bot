@@ -114,6 +114,9 @@ func New(cfg config.Config, database *db.DB, defs *definitions.Definitions, ps *
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/whoami", bot.MatchTypeExact, b.handleWhoami)
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/cancel", bot.MatchTypeExact, b.handleCancel)
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/menu", bot.MatchTypeExact, b.handleMenu)
+	api.RegisterHandler(bot.HandlerTypeMessageText, "/learn", bot.MatchTypePrefix, b.handleLearn)
+	// Inline "Learn" buttons under /today.
+	api.RegisterHandler(bot.HandlerTypeCallbackQueryData, "learn:", bot.MatchTypePrefix, b.handleLearnCallback)
 
 	return b, nil
 }
@@ -169,6 +172,23 @@ func (b *Bot) reply(ctx context.Context, chatID int64, text string) {
 // send pushes text to an arbitrary chat (used by the scheduler).
 func (b *Bot) send(ctx context.Context, chatID int64, text string) {
 	b.reply(ctx, chatID, text)
+}
+
+// replyLong sends text, splitting it into multiple messages under Telegram's
+// 4096-character limit, preferring to break on line boundaries.
+func (b *Bot) replyLong(ctx context.Context, chatID int64, text string) {
+	const max = 3900
+	for len(text) > max {
+		cut := strings.LastIndex(text[:max], "\n")
+		if cut <= 0 {
+			cut = max
+		}
+		b.reply(ctx, chatID, strings.TrimRight(text[:cut], "\n"))
+		text = strings.TrimLeft(text[cut:], "\n")
+	}
+	if strings.TrimSpace(text) != "" {
+		b.reply(ctx, chatID, text)
+	}
 }
 
 func (b *Bot) getConv(chatID int64) *conversation {

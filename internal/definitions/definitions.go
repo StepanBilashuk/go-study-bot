@@ -12,6 +12,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strings"
 
 	"gopkg.in/yaml.v3"
 )
@@ -103,6 +104,7 @@ type Definitions struct {
 	Books     map[string]Book
 	Resources []Resource
 	Companies map[string]Company
+	Theory    map[string]string // slug -> seeded theory markdown
 }
 
 // Load reads and validates every definition file under dataDir. Missing
@@ -114,9 +116,13 @@ func Load(dataDir string) (*Definitions, error) {
 		Drills:    make(map[string]Drill),
 		Books:     make(map[string]Book),
 		Companies: make(map[string]Company),
+		Theory:    make(map[string]string),
 	}
 
 	if err := defs.loadTopics(filepath.Join(dataDir, "topics")); err != nil {
+		return nil, err
+	}
+	if err := defs.loadTheory(filepath.Join(dataDir, "theory")); err != nil {
 		return nil, err
 	}
 	if err := defs.loadDrills(filepath.Join(dataDir, "drills")); err != nil {
@@ -154,6 +160,27 @@ func (d *Definitions) loadTopics(dir string) error {
 			}
 			d.Topics[t.Slug] = t
 		}
+	}
+	return nil
+}
+
+// loadTheory reads data/theory/<slug>.md into the Theory map (seeded in-bot
+// theory shown when a topic is tapped). A missing directory is fine.
+func (d *Definitions) loadTheory(dir string) error {
+	if !fileExists(dir) {
+		return nil
+	}
+	matches, err := filepath.Glob(filepath.Join(dir, "*.md"))
+	if err != nil {
+		return fmt.Errorf("glob theory: %w", err)
+	}
+	for _, f := range matches {
+		content, err := os.ReadFile(f)
+		if err != nil {
+			return fmt.Errorf("read %s: %w", f, err)
+		}
+		slug := strings.TrimSuffix(filepath.Base(f), ".md")
+		d.Theory[slug] = string(content)
 	}
 	return nil
 }

@@ -45,6 +45,18 @@ func (b *Bot) replyKb(ctx context.Context, chatID int64, text string) {
 	}
 }
 
+// replyInline sends text with an inline keyboard attached. The persistent
+// quick-bar reply keyboard set earlier is unaffected.
+func (b *Bot) replyInline(ctx context.Context, chatID int64, text string, markup models.ReplyMarkup) {
+	if _, err := b.api.SendMessage(ctx, &bot.SendMessageParams{
+		ChatID:      chatID,
+		Text:        text,
+		ReplyMarkup: markup,
+	}); err != nil {
+		slog.Error("send message", "chat_id", chatID, "err", err)
+	}
+}
+
 // handleMenu installs the quick-bar and points at the native command menu.
 func (b *Bot) handleMenu(ctx context.Context, _ *bot.Bot, update *models.Update) {
 	if update.Message == nil {
@@ -84,6 +96,7 @@ func (b *Bot) runByCommand(ctx context.Context, api *bot.Bot, update *models.Upd
 func botCommands() []models.BotCommand {
 	return []models.BotCommand{
 		{Command: "today", Description: "Daily plan — 3 topics + a drill"},
+		{Command: "learn", Description: "Topic theory: /learn <slug> (or tap in /today)"},
 		{Command: "done", Description: "Advance a topic: /done <slug>"},
 		{Command: "drill", Description: "Process drill (paste the score back)"},
 		{Command: "debrief", Description: "Log a debrief: /debrief <text>"},

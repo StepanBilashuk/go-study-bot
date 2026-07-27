@@ -15,7 +15,8 @@ AI commands emit a prompt you run in YOUR Claude, then paste the JSON reply
 back here (like /newcompany → /importcompany). /cancel drops a pending paste.
 
 Daily loop
-  /today            3 topics + 1 drill + resources (never more than 3)
+  /today            3 topics + 1 drill (tap a topic to read its theory)
+  /learn <slug>     topic theory + best practices + interview probes (in-bot)
   /done <slug>      advance a topic a stage (or name the missing prerequisite)
   /drill            emit a drill of your weakest kind → paste the score JSON back
   /debrief <text>   emit an extraction prompt → paste gaps JSON back

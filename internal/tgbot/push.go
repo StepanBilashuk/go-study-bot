@@ -71,12 +71,12 @@ func (b *Bot) pushDailyToAll(ctx context.Context) {
 		return
 	}
 	for _, userID := range users {
-		text, err := b.buildToday(ctx, userID)
+		text, slugs, err := b.buildToday(ctx, userID)
 		if err != nil {
 			slog.Error("daily push: build today", "user", userID, "err", err)
 			continue
 		}
-		b.send(ctx, userID, "⏰ Daily plan\n\n"+text)
+		b.replyInline(ctx, userID, "⏰ Daily plan\n\n"+text, learnKeyboard(b.getDefs(), slugs))
 	}
 	slog.Info("daily push sent", "users", len(users))
 }

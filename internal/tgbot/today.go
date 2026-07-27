@@ -18,27 +18,29 @@ func (b *Bot) handleToday(ctx context.Context, _ *bot.Bot, update *models.Update
 		return
 	}
 	userID := update.Message.Chat.ID
-	text, err := b.buildToday(ctx, userID)
+	text, slugs, err := b.buildToday(ctx, userID)
 	if err != nil {
 		b.reply(ctx, userID, "Could not build today: "+err.Error())
 		return
 	}
-	// /today is a daily entry point — keep the quick-bar pinned.
-	b.replyKb(ctx, userID, text)
+	// Topics are tappable → their learning card. (The quick-bar reply keyboard
+	// set earlier via /menu or /help persists underneath.)
+	b.replyInline(ctx, userID, text, learnKeyboard(b.getDefs(), slugs))
 }
 
 // buildToday assembles one user's daily plan: at most 3 topics (algorithms,
 // system design, review) + 1 drill + up to 2 resources per topic (spec §7). The
-// 3-slot structure enforces the "never more than 3 topics" rule.
-func (b *Bot) buildToday(ctx context.Context, userID int64) (string, error) {
+// 3-slot structure enforces the "never more than 3 topics" rule. It also returns
+// the slugs of the topics shown, for the tappable Learn buttons.
+func (b *Bot) buildToday(ctx context.Context, userID int64) (string, []string, error) {
 	defs := b.getDefs()
 	prog, err := b.db.ListProgress(ctx, userID)
 	if err != nil {
-		return "", err
+		return "", nil, err
 	}
 	stats, err := b.db.DrillStats(ctx, userID)
 	if err != nil {
-		return "", err
+		return "", nil, err
 	}
 	now := time.Now()
 
@@ -59,20 +61,25 @@ func (b *Bot) buildToday(ctx context.Context, userID int64) (string, error) {
 	var sb strings.Builder
 	sb.WriteString("📅 Today" + focusNote + "\n")
 
+	var slugs []string
 	if t, ok := pickTopic(defs, prog, definitions.TrackAlgorithms, focus); ok {
 		writeTopic(&sb, defs, prog, t, "Algorithms")
+		slugs = append(slugs, t.Slug)
 	}
 	if t, ok := pickTopic(defs, prog, definitions.TrackSystemDesign, focus); ok {
 		writeTopic(&sb, defs, prog, t, "System design")
+		slugs = append(slugs, t.Slug)
 	}
 	if t, ok := pickReview(defs, prog, now); ok {
 		writeTopic(&sb, defs, prog, t, "Review")
+		slugs = append(slugs, t.Slug)
 	}
 
 	if d, ok := pickDrill(defs, stats); ok {
 		fmt.Fprintf(&sb, "\n🎯 Drill: %s (%s, %d min) — run /drill\n", d.Name, d.Kind, d.DurationMin)
 	}
-	return strings.TrimRight(sb.String(), "\n"), nil
+	sb.WriteString("\nTap a topic below for theory + best practices.")
+	return strings.TrimRight(sb.String(), "\n"), slugs, nil
 }
 
 func writeTopic(sb *strings.Builder, defs *definitions.Definitions, prog map[string]db.Progress, t definitions.Topic, slot string) {
