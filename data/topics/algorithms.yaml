@@ -89,3 +89,59 @@
   depends_on: [graphs]
   gate: "1D and 2D DP, 3 unseen mediums"
   est_hours: 10
+
+- slug: tries
+  track: algorithms
+  name: Tries (Prefix Trees)
+  priority: 12
+  depends_on: [trees]
+  gate: "insert / search / startsWith from memory"
+  est_hours: 4
+
+- slug: union-find
+  track: algorithms
+  name: Union-Find (Disjoint Set)
+  priority: 13
+  depends_on: [graphs]
+  gate: "union by rank + path compression from memory"
+  est_hours: 3
+
+- slug: advanced-graphs
+  track: algorithms
+  name: Advanced Graphs (shortest path & MST)
+  priority: 14
+  depends_on: [graphs, heap]
+  gate: "Dijkstra, Bellman-Ford, and an MST from memory"
+  est_hours: 8
+
+- slug: greedy
+  track: algorithms
+  name: Greedy
+  priority: 15
+  depends_on: [arrays-hashing]
+  gate: "justify the greedy choice on 3 problems"
+  est_hours: 4
+
+- slug: intervals
+  track: algorithms
+  name: Intervals
+  priority: 16
+  depends_on: [two-pointers]
+  gate: "merge / insert / overlap from memory"
+  est_hours: 3
+
+- slug: bit-manipulation
+  track: algorithms
+  name: Bit Manipulation
+  priority: 17
+  depends_on: [arrays-hashing]
+  gate: "XOR tricks, masks, count set bits"
+  est_hours: 3
+
+- slug: math-geometry
+  track: algorithms
+  name: Math & Geometry
+  priority: 18
+  depends_on: [arrays-hashing]
+  gate: "matrix rotation, GCD, overflow-safe math"
+  est_hours: 4

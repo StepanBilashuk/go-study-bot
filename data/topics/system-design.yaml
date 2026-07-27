@@ -97,3 +97,115 @@
   depends_on: []
   gate: "latency/consistency trade-off per region"
   est_hours: 4
+
+- slug: load-balancing
+  track: system-design
+  name: Load balancing (L4/L7)
+  priority: 13
+  depends_on: []
+  gate: "L4 vs L7, algorithms, health checks, sticky sessions"
+  est_hours: 3
+
+- slug: message-queues
+  track: system-design
+  name: Message queues (RabbitMQ/SQS, DLQ)
+  priority: 14
+  depends_on: []
+  gate: "queue vs log, at-least-once, DLQ, ordering"
+  est_hours: 4
+
+- slug: api-design
+  track: system-design
+  name: API design (REST, gRPC, GraphQL)
+  priority: 15
+  depends_on: []
+  gate: "REST vs gRPC vs GraphQL, pagination, versioning"
+  est_hours: 4
+
+- slug: search-indexing
+  track: system-design
+  name: Search & indexing (inverted index)
+  priority: 16
+  depends_on: [storage-retrieval]
+  gate: "inverted index, tokenization, relevance, scaling"
+  est_hours: 4
+
+- slug: microservices-patterns
+  track: system-design
+  name: Microservices patterns (saga, outbox, circuit breaker)
+  priority: 17
+  depends_on: [idempotency]
+  gate: "saga vs 2PC, outbox, circuit breaker, service discovery"
+  est_hours: 5
+
+- slug: observability
+  track: system-design
+  name: Observability (metrics, logs, traces, SLO)
+  priority: 18
+  depends_on: []
+  gate: "3 pillars, RED/USE, SLI/SLO/error budget"
+  est_hours: 3
+
+- slug: websockets-realtime
+  track: system-design
+  name: Real-time delivery (WebSocket, SSE, pub/sub)
+  priority: 19
+  depends_on: []
+  gate: "polling vs SSE vs WebSocket, fan-out, presence"
+  est_hours: 4
+
+- slug: object-storage
+  track: system-design
+  name: Object/blob storage (S3, chunking)
+  priority: 20
+  depends_on: []
+  gate: "blob vs block vs file, chunked upload, presigned URLs"
+  est_hours: 3
+
+- slug: cdn-edge
+  track: system-design
+  name: CDN & edge caching
+  priority: 21
+  depends_on: [caching]
+  gate: "CDN, cache keys, invalidation, edge compute"
+  est_hours: 3
+
+- slug: dns
+  track: system-design
+  name: DNS & name resolution
+  priority: 22
+  depends_on: []
+  gate: "resolution path, record types, TTL, GeoDNS"
+  est_hours: 2
+
+- slug: proxies-gateway
+  track: system-design
+  name: Proxies & API gateway
+  priority: 23
+  depends_on: [load-balancing]
+  gate: "forward vs reverse proxy, API gateway responsibilities"
+  est_hours: 3
+
+- slug: security-auth
+  track: system-design
+  name: Security — authN/authZ (OAuth2, JWT)
+  priority: 24
+  depends_on: []
+  gate: "authN vs authZ, OAuth2 flows, JWT vs sessions"
+  est_hours: 5
+
+- slug: analytics-olap
+  track: system-design
+  name: Analytics & OLAP (columnar, warehouse)
+  priority: 25
+  depends_on: [storage-retrieval]
+  gate: "OLTP vs OLAP, columnar, batch vs stream, star schema"
+  est_hours: 4
+
+- slug: distributed-coordination
+  track: system-design
+  name: Distributed coordination (locks, leader election)
+  priority: 26
+  depends_on: [consistency-consensus]
+  gate: "distributed lock pitfalls, leader election, ZooKeeper/etcd"
+  est_hours: 4
