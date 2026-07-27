@@ -1,9 +1,30 @@
+// Package claude holds the strict parsers for the JSON shapes the bot asks the
+// user to bring back from their own Claude (spec §13). The bot never calls the
+// API itself — it emits prompts and imports the pasted JSON, which these
+// functions validate.
 package claude
 
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
+
+// ExtractJSON strips a surrounding ```json ... ``` fence (or a stray leading or
+// trailing fence) so a fenced reply still parses.
+func ExtractJSON(s string) string {
+	s = strings.TrimSpace(s)
+	if !strings.HasPrefix(s, "```") {
+		return s
+	}
+	s = strings.TrimPrefix(s, "```")
+	s = strings.TrimPrefix(s, "json")
+	s = strings.TrimPrefix(s, "JSON")
+	if i := strings.LastIndex(s, "```"); i >= 0 {
+		s = s[:i]
+	}
+	return strings.TrimSpace(s)
+}
 
 // The types and parsers below mirror the strict JSON schemas the bot asks
 // Claude to return (spec §13). Each Parse* function unmarshals AND validates

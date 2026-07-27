@@ -6,13 +6,12 @@ import (
 
 	"github.com/go-telegram/bot"
 	"github.com/go-telegram/bot/models"
-
-	"prepbot/internal/claude"
 )
 
-// handleDrill serves one process drill of the weakest kind (spec §7). It asks
-// Claude to generate a fresh challenge, sends it, and parks the chat waiting for
-// the candidate's answer (a bare text message).
+// handleDrill emits a drill of the weakest kind: the generation prompt plus an
+// instruction to score the answer and return JSON. The user runs the whole
+// drill in their Claude and pastes the {score,outcome} back; applyDrill logs it
+// so the weakest-kind rotation keeps working (spec §7, §10).
 func (b *Bot) handleDrill(ctx context.Context, _ *bot.Bot, update *models.Update) {
 	if update.Message == nil {
 		return
@@ -31,52 +30,14 @@ func (b *Bot) handleDrill(ctx context.Context, _ *bot.Bot, update *models.Update
 		return
 	}
 
-	system, err := b.getPrompts().Render("drill-"+string(drill.Kind), nil)
+	gen, err := b.getPrompts().Render("drill-"+string(drill.Kind), nil)
 	if err != nil {
 		b.reply(ctx, chatID, "Prompt error: "+err.Error())
 		return
 	}
-	challenge, err := b.claude.Complete(ctx, system, "Generate one drill now.")
-	if err != nil {
-		b.reply(ctx, chatID, "Claude error: "+err.Error())
-		return
-	}
+	prompt := gen + "\n\nAfter I answer, score me 1-5 and end your reply with ONLY this JSON " +
+		"(no prose, no fences):\n{\"score\": 1-5, \"outcome\": \"<max 15 words on what was strong or missing>\"}"
 
-	b.setConv(chatID, &conversation{
-		mode:      modeDrillPending,
-		drillKind: string(drill.Kind),
-		drillText: challenge,
-	})
-	b.reply(ctx, chatID, fmt.Sprintf("🎯 %s drill (%d min):\n\n%s\n\nReply with your answer.",
-		drill.Name, drill.DurationMin, challenge))
-}
-
-// handleDrillAnswer scores a candidate's reply to a pending drill, logs it, and
-// clears the pending state.
-func (b *Bot) handleDrillAnswer(ctx context.Context, chatID int64, conv *conversation, answer string) {
-	system, err := b.getPrompts().Render("drill-score", map[string]string{"kind": conv.drillKind})
-	if err != nil {
-		b.reply(ctx, chatID, "Prompt error: "+err.Error())
-		return
-	}
-	user := fmt.Sprintf("Drill:\n%s\n\nCandidate answer:\n%s\n\nScore it.", conv.drillText, answer)
-
-	var score claude.DrillScore
-	err = b.claude.CompleteJSON(ctx, system, user, func(raw []byte) error {
-		s, e := claude.ParseDrillScore(raw)
-		score = s
-		return e
-	})
-	if err != nil {
-		b.reply(ctx, chatID, "Could not score the drill: "+err.Error())
-		return
-	}
-
-	if err := b.db.InsertDrill(ctx, chatID, conv.drillKind, score.Outcome, &score.Score); err != nil {
-		b.reply(ctx, chatID, "DB error: "+err.Error())
-		return
-	}
-	b.awardXP(ctx, chatID, "drill", 10)
-	b.clearConv(chatID)
-	b.reply(ctx, chatID, fmt.Sprintf("Scored %s: %d/5 — %s", conv.drillKind, score.Score, score.Outcome))
+	b.setConv(chatID, &conversation{mode: modeAwaitImport, kind: importDrill, drillKind: string(drill.Kind)})
+	b.reply(ctx, chatID, emitHeader(fmt.Sprintf("%s drill (%d min)", drill.Name, drill.DurationMin))+prompt)
 }

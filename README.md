@@ -7,6 +7,11 @@ Definitions (topics, drills, resources, companies, prompts) live in YAML in this
 repo. Only mutable state (progress, sessions, drill log, glossary) lives in
 Postgres. See `CLAUDE.md` for the full spec.
 
+**No API key.** The bot never calls the Anthropic API. AI commands **emit a
+prompt** you run in your own Claude, then **paste the JSON reply back** here —
+the bot parses and applies it (like `/newcompany` → `/importcompany`). Zero cost,
+no key to manage. `/cancel` drops a pending paste-back.
+
 **Multi-user:** one bot instance serves many people. Every stateful row is
 scoped to the Telegram user id, so each user has independent progress,
 calibration, drills, and glossary. Users are registered automatically on first
@@ -16,14 +21,14 @@ message.
 
 | Command | Behaviour |
 |---------|-----------|
-| `/start` | One-time calibration — walks every topic, Claude scores your 2-sentence answer, sets initial confidence |
+| `/start` | Emit a calibration prompt for all topics → paste the scores JSON back to set confidence |
 | `/today` | 3 topics (algorithms · system design · review) + 1 drill + ≤2 resources each |
 | `/done <slug>` | Advance a topic one stage if prerequisites are met; enters spaced repetition after stage 4 |
-| `/drill` | One process drill of your weakest kind; reply to get it scored |
-| `/debrief <text>` | Free text in → Claude extracts gaps, updates confidence, reschedules |
+| `/drill` | Emit a drill of your weakest kind → paste the `{score,outcome}` JSON back |
+| `/debrief <text>` | Emit an extraction prompt with your text → paste the gaps JSON back |
 | `/boss [behavioral]` | Checks readiness, then emits a paste-ready mock-interview brief |
-| `/quiz <slug>` | 10-item pattern-recognition quiz (A/B/C/D); ≥8/10 meets the stage-2 gate |
-| `/story` | Weekly story-mining question for your weakest competency; extracts a STAR story (a metric is required) |
+| `/quiz <slug>` | Emit a 10-item recognition quiz (run it in Claude; ≥8/10 meets the stage-2 gate) |
+| `/story` | Emit a story-mining prompt for your weakest competency → paste the STAR JSON back (metric required) |
 | `/stories` | Competency matrix — which competencies still have no story |
 | `/ready` | Readiness score per company with its named blocker |
 | `/newcompany <name>` | Emit a research prompt to paste into Claude with web search |
@@ -51,7 +56,7 @@ Phases 1–5 are all built. Gamification (`/stats`, XP) sits behind the
 The simplest way to bring up everything:
 
 ```bash
-cp .env.example .env          # fill TELEGRAM_BOT_TOKEN + ANTHROPIC_API_KEY
+cp .env.example .env          # fill TELEGRAM_BOT_TOKEN + POSTGRES_PASSWORD (no API key needed)
 docker compose up --build -d
 docker compose logs -f bot
 ```
@@ -67,7 +72,7 @@ Requires Go 1.26+ and a local Postgres.
 
 ```bash
 createdb prepbot
-cp .env.example .env          # fill TELEGRAM_BOT_TOKEN, ANTHROPIC_API_KEY, DATABASE_URL
+cp .env.example .env          # fill TELEGRAM_BOT_TOKEN + DATABASE_URL (no API key needed)
 set -a; source .env; set +a
 go run ./cmd/prepbot
 ```
@@ -107,7 +112,7 @@ internal/config    all config from environment variables
 internal/db        pgx pool, startup .sql migrations, all queries
 internal/definitions  YAML loader + validation (topics/drills/resources/companies)
 internal/prompts   Claude prompt templates, rendered with {{vars}}
-internal/claude    net/http Anthropic client + strict JSON parsers (tested)
+internal/claude    strict JSON parsers for the pasted-back replies (tested)
 internal/scheduler spaced-repetition intervals (tested)
 internal/tgbot     long-polling loop, command handlers, daily push
 data/ prompts/     the editable content set

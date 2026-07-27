@@ -10,28 +10,28 @@ import (
 )
 
 // Config holds every value the bot needs at runtime.
+//
+// The bot never calls the Anthropic API: AI commands emit a prompt for the user
+// to run in their own Claude and paste the JSON back. So no API key or model is
+// configured — only a Telegram token and a database.
 type Config struct {
-	TelegramToken   string // TELEGRAM_BOT_TOKEN (required)
-	DatabaseURL     string // DATABASE_URL, pgx-style DSN (required)
-	AnthropicAPIKey string // ANTHROPIC_API_KEY (required from Step 3 onward)
-	AnthropicModel  string // ANTHROPIC_MODEL, tunable without a rebuild
-	DataDir         string // directory holding data/** YAML definitions
-	PromptsDir      string // directory holding prompts/*.yaml
-	PushHour        int    // PUSH_HOUR, local hour (0-23) for the daily /today push
-	Gamification    bool   // GAMIFICATION feature flag (Phase 5): XP, levels, streak
+	TelegramToken string // TELEGRAM_BOT_TOKEN (required)
+	DatabaseURL   string // DATABASE_URL, pgx-style DSN (required)
+	DataDir       string // directory holding data/** YAML definitions
+	PromptsDir    string // directory holding prompts/*.yaml
+	PushHour      int    // PUSH_HOUR, local hour (0-23) for the daily /today push
+	Gamification  bool   // GAMIFICATION feature flag (Phase 5): XP, levels, streak
 }
 
 // Load reads configuration from the environment. Missing required variables
 // produce a single clear error so the process fails fast at startup.
 func Load() (Config, error) {
 	c := Config{
-		TelegramToken:   os.Getenv("TELEGRAM_BOT_TOKEN"),
-		DatabaseURL:     os.Getenv("DATABASE_URL"),
-		AnthropicAPIKey: os.Getenv("ANTHROPIC_API_KEY"),
-		AnthropicModel:  getenvDefault("ANTHROPIC_MODEL", "claude-opus-5"),
-		DataDir:         getenvDefault("DATA_DIR", "data"),
-		PromptsDir:      getenvDefault("PROMPTS_DIR", "prompts"),
-		PushHour:        8,
+		TelegramToken: os.Getenv("TELEGRAM_BOT_TOKEN"),
+		DatabaseURL:   os.Getenv("DATABASE_URL"),
+		DataDir:       getenvDefault("DATA_DIR", "data"),
+		PromptsDir:    getenvDefault("PROMPTS_DIR", "prompts"),
+		PushHour:      8,
 	}
 
 	if v := os.Getenv("PUSH_HOUR"); v != "" {
@@ -48,8 +48,6 @@ func Load() (Config, error) {
 		c.Gamification = true
 	}
 
-	// ANTHROPIC_API_KEY is only exercised by Claude-backed commands (Step 3+),
-	// so the bot is allowed to boot without it during Step 1.
 	var missing []string
 	if c.TelegramToken == "" {
 		missing = append(missing, "TELEGRAM_BOT_TOKEN")

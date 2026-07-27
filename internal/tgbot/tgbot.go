@@ -1,6 +1,10 @@
 // Package tgbot owns the Telegram long-polling loop, command handlers, the
-// per-chat conversation state used by the multi-turn flows (/start, /drill),
-// and the daily push scheduler.
+// per-chat conversation state used by the emit/import flows, and the daily push
+// scheduler.
+//
+// The bot never calls the Anthropic API. Every AI command emits a prompt for
+// the user to run in their own Claude; commands that update state then import
+// the JSON the user pastes back (like /newcompany → /importcompany).
 package tgbot
 
 import (
@@ -13,7 +17,6 @@ import (
 	"github.com/go-telegram/bot"
 	"github.com/go-telegram/bot/models"
 
-	"prepbot/internal/claude"
 	"prepbot/internal/config"
 	"prepbot/internal/db"
 	"prepbot/internal/definitions"
@@ -24,37 +27,38 @@ import (
 type convMode int
 
 const (
-	modeNone         convMode = iota
-	modeCalibrating           // /start is walking topics one at a time
-	modeDrillPending          // /drill sent a challenge and awaits the answer
-	modeQuizzing              // /quiz is walking items one at a time
-	modeStoryMining           // /story asked a question and awaits the answer
-	modeImportCompany         // /importcompany awaits the pasted JSON
+	modeNone          convMode = iota
+	modeAwaitImport            // an AI command emitted a prompt; awaiting the pasted JSON
+	modeImportCompany          // /importcompany awaits the pasted JSON
+)
+
+// importKind identifies which emit/import flow is pending, so the pasted JSON is
+// parsed and applied correctly.
+type importKind string
+
+const (
+	importCalibration importKind = "calibration"
+	importDebrief     importKind = "debrief"
+	importDrill       importKind = "drill"
+	importStory       importKind = "story"
 )
 
 // conversation is the in-memory state for one chat, lost on restart —
-// acceptable for these interactive flows.
+// acceptable for these short emit→paste-back flows.
 type conversation struct {
-	mode        convMode
-	calibTopics []string // ordered topic slugs still to calibrate
-	calibIdx    int
-	drillKind   string // kind awaiting an answer
-	drillText   string // the challenge that was posed
+	mode convMode
+	kind importKind // which flow is awaiting a paste (mode == modeAwaitImport)
 
-	quizTopic string             // /quiz: topic under test
-	quizItems []claude.QuizItem  // /quiz: the 10 items
-	quizIdx   int                // /quiz: current item
-	quizScore int                // /quiz: correct so far
-
-	storyComp string // /story: competency being mined
+	debriefText string // the raw debrief text, to store on import
+	drillKind   string // the drill kind, to log on import
+	storyComp   string // the competency being mined, to tag on import
 }
 
 // Bot bundles the Telegram client with everything the handlers need.
 type Bot struct {
-	api    *bot.Bot
-	cfg    config.Config
-	db     *db.DB
-	claude *claude.Client
+	api *bot.Bot
+	cfg config.Config
+	db  *db.DB
 
 	// defs and prompts are swapped atomically under mu on /reload.
 	mu      sync.RWMutex
@@ -65,12 +69,11 @@ type Bot struct {
 	conv   map[int64]*conversation
 }
 
-// New constructs the bot and registers the Phase 1 handlers.
+// New constructs the bot and registers the handlers.
 func New(cfg config.Config, database *db.DB, defs *definitions.Definitions, ps *prompts.Set) (*Bot, error) {
 	b := &Bot{
 		cfg:     cfg,
 		db:      database,
-		claude:  claude.New(cfg.AnthropicAPIKey, cfg.AnthropicModel),
 		defs:    defs,
 		prompts: ps,
 		conv:    make(map[int64]*conversation),
@@ -109,6 +112,7 @@ func New(cfg config.Config, database *db.DB, defs *definitions.Definitions, ps *
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/progress", bot.MatchTypeExact, b.handleProgress)
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/help", bot.MatchTypeExact, b.handleHelp)
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/whoami", bot.MatchTypeExact, b.handleWhoami)
+	api.RegisterHandler(bot.HandlerTypeMessageText, "/cancel", bot.MatchTypeExact, b.handleCancel)
 
 	return b, nil
 }
@@ -214,19 +218,23 @@ func (b *Bot) handleDefault(ctx context.Context, _ *bot.Bot, update *models.Upda
 
 	conv := b.getConv(chatID)
 	switch conv.mode {
-	case modeCalibrating:
-		b.handleCalibrationAnswer(ctx, chatID, conv, text)
-	case modeDrillPending:
-		b.handleDrillAnswer(ctx, chatID, conv, text)
-	case modeQuizzing:
-		b.handleQuizAnswer(ctx, chatID, conv, text)
-	case modeStoryMining:
-		b.handleStoryAnswer(ctx, chatID, conv, text)
+	case modeAwaitImport:
+		b.handleImport(ctx, chatID, conv, text)
 	case modeImportCompany:
 		b.handleImportCompanyJSON(ctx, chatID, text)
 	default:
-		b.reply(ctx, chatID, "Send a command like /today. Free-text goes to Claude only via /debrief <text>.")
+		b.reply(ctx, chatID, "Send a command — /help for the list. (Waiting to paste JSON back? Run the emitting command first.)")
 	}
+}
+
+// handleCancel drops any pending emit/import flow.
+func (b *Bot) handleCancel(ctx context.Context, _ *bot.Bot, update *models.Update) {
+	if update.Message == nil {
+		return
+	}
+	chatID := update.Message.Chat.ID
+	b.clearConv(chatID)
+	b.reply(ctx, chatID, "Cancelled.")
 }
 
 // awardXP records XP for an activity when the gamification flag is on (Phase 5).

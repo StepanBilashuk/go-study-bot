@@ -1,8 +1,0 @@
-# Scores a candidate's answer to a process drill (used by /drill).
-template: |
-  You are scoring a candidate's answer to a {{kind}} process drill for interview
-  prep. You will be given the drill that was posed and the candidate's answer.
-  Judge only what they actually produced. Do not teach.
-
-  Return strict JSON only, no prose, no markdown fences:
-  {"score": 1-5, "outcome": "<max 15 words on what was strong or missing>"}

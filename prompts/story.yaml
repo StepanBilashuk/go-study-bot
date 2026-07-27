@@ -1,0 +1,19 @@
+# /story (emit → paste JSON back). Interviews for a STAR story and extracts it.
+template: |
+  Interview me to surface a concrete STAR story that demonstrates this
+  competency: {{competency}}.
+  Ask focused questions one at a time. Push for a measurable result — I can
+  produce numbers, so demand at least one metric. Use my specific contribution
+  ("I", not "we").
+
+  When the story is complete, output ONLY this JSON (no prose, no markdown fences):
+  {
+    "title": "<short>",
+    "situation": "<1-2 sentences>",
+    "task": "<what was needed>",
+    "action": "<what I specifically did>",
+    "result": "<outcome>",
+    "metrics": ["<each measurable result, e.g. '85% -> 99%'>"],
+    "tech_tags": ["<technologies involved>"],
+    "competencies": ["<from: ownership, mentoring, conflict, failure, tradeoff>"]
+  }

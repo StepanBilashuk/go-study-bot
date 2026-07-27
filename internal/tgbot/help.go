@@ -10,19 +10,22 @@ import (
 
 const helpText = `prepbot — interview-prep tracker
 
+AI commands emit a prompt you run in YOUR Claude, then paste the JSON reply
+back here (like /newcompany → /importcompany). /cancel drops a pending paste.
+
 Daily loop
   /today            3 topics + 1 drill + resources (never more than 3)
   /done <slug>      advance a topic a stage (or name the missing prerequisite)
-  /drill            one process drill of your weakest kind; reply to score it
-  /debrief <text>   free text → Claude extracts gaps, updates confidence
+  /drill            emit a drill of your weakest kind → paste the score JSON back
+  /debrief <text>   emit an extraction prompt → paste gaps JSON back
 
 Practice
-  /quiz <slug>      10-item pattern-recognition quiz (reply A/B/C/D)
+  /quiz <slug>      emit a 10-item recognition quiz (do it in Claude; 8/10 = gate)
   /boss             system-design mock brief (once the gate is met)
   /boss behavioral  behavioral mock, targeting your uncovered competencies
 
 Stories & language
-  /story            mine a STAR story for your weakest competency
+  /story            mine a STAR story → paste the story JSON back
   /stories          competency matrix (who still has no story)
   /glossary         review English terms you couldn't produce
 
@@ -35,9 +38,10 @@ Companies
 Overview & setup
   /progress         compact per-track summary
   /stats            XP, streak, mastery (needs GAMIFICATION=true)
-  /start            one-time calibration of all topics
+  /start            emit a calibration prompt → paste the scores JSON back
   /push on|off      toggle your daily plan push
   /whoami           show your chat id
+  /cancel           drop a pending paste-back
   /reload           re-read YAML from disk
   /ping             liveness check`
 

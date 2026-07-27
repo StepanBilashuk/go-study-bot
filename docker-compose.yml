@@ -30,12 +30,9 @@ services:
         condition: service_healthy
     environment:
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:?set TELEGRAM_BOT_TOKEN in .env}
-      # Optional: without it the bot still runs, but the Claude-backed commands
-      # (/start, /debrief, /drill, /quiz, /story) will error when used.
-      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
-      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-opus-5}
       DATABASE_URL: postgres://prepbot:${POSTGRES_PASSWORD:-prepbot}@db:5432/prepbot
       PUSH_HOUR: ${PUSH_HOUR:-8}
+      GAMIFICATION: ${GAMIFICATION:-false}
     # Mount the editable content so /reload picks up edits without a rebuild.
     # data is read-write because /importcompany writes data/companies/*.yaml;
     # prompts is read-only. Remove both lines to use the copies baked in.
