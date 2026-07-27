@@ -241,3 +241,11 @@
   depends_on: []
   gate: "class model, SOLID, patterns for parking-lot / elevator / a game"
   est_hours: 4
+
+- slug: concurrency
+  track: system-design
+  name: Concurrency & threading (locks, deadlocks)
+  priority: 31
+  depends_on: []
+  gate: "deadlock's 4 conditions + prevent/avoid/detect; race conditions; mutex vs semaphore; atomics/CAS"
+  est_hours: 4
