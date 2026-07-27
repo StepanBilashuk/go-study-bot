@@ -45,6 +45,7 @@ func run() error {
 		"theory", len(defs.Theory),
 		"designs", len(defs.Designs),
 		"prep", len(defs.Prep),
+		"arch", len(defs.Arch),
 	)
 
 	ps, err := prompts.Load(cfg.PromptsDir)

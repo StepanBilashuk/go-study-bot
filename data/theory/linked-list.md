@@ -21,3 +21,7 @@ Reverse Linked List, Linked List Cycle, Merge Two Sorted Lists, Remove Nth From 
 • NeetCode — patterns roadmap: https://neetcode.io/roadmap
 • NeetCode (YouTube, per-problem): https://www.youtube.com/@NeetCode
 • Tech Interview Handbook — algo cheatsheet: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/
+
+📚 Practice banks
+• Top-100 coding questions — linked-list section (reverse, cycle, merge, Nth-from-end): https://shirsh94.medium.com/top-100-interview-programming-questions-that-asks-many-times-5c5bf36449ab
+• DopplerHQ / awesome-interview-questions: https://github.com/DopplerHQ/awesome-interview-questions

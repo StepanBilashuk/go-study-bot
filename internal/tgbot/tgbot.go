@@ -118,6 +118,9 @@ func New(cfg config.Config, database *db.DB, defs *definitions.Definitions, ps *
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/designs", bot.MatchTypeExact, b.handleDesigns)
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/design", bot.MatchTypePrefix, b.handleDesign)
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/prep", bot.MatchTypePrefix, b.handlePrep)
+	api.RegisterHandler(bot.HandlerTypeMessageText, "/archs", bot.MatchTypeExact, b.handleArchs)
+	api.RegisterHandler(bot.HandlerTypeMessageText, "/arch", bot.MatchTypePrefix, b.handleArch)
+	api.RegisterHandler(bot.HandlerTypeCallbackQueryData, "arch:", bot.MatchTypePrefix, b.handleArchCallback)
 	// Inline buttons: topic theory + design case studies.
 	api.RegisterHandler(bot.HandlerTypeCallbackQueryData, "learn:", bot.MatchTypePrefix, b.handleLearnCallback)
 	api.RegisterHandler(bot.HandlerTypeCallbackQueryData, "design:", bot.MatchTypePrefix, b.handleDesignCallback)

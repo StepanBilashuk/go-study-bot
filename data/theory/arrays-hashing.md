@@ -20,3 +20,8 @@ Two Sum, Group Anagrams, Top-K Frequent, Longest Consecutive Sequence, Valid Ana
 • NeetCode — patterns roadmap: https://neetcode.io/roadmap
 • NeetCode (YouTube, per-problem): https://www.youtube.com/@NeetCode
 • Tech Interview Handbook — algo cheatsheet: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/
+
+📚 Practice banks (grind reps here)
+• Top-100 coding questions — arrays + general section: https://shirsh94.medium.com/top-100-interview-programming-questions-that-asks-many-times-5c5bf36449ab
+• DopplerHQ / awesome-interview-questions (umbrella list, all languages/topics): https://github.com/DopplerHQ/awesome-interview-questions
+• NeetCode 150 (the canonical set to actually finish): https://neetcode.io/practice

@@ -26,7 +26,8 @@ Practice
   /boss             system-design mock brief (once the gate is met)
   /boss behavioral  behavioral mock, targeting your uncovered competencies
   /designs          FAANG "design X" case studies (tap to open)
-  /prep <company>   per-company prep plan: /prep bolt|wolt|wise
+  /archs            real-world architectures (Spotify, YouTube, Netflix…)
+  /prep <company>   per-company prep plan: /prep bolt|wolt|wise|google
 
 Stories & language
   /story            mine a STAR story → paste the story JSON back

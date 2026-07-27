@@ -107,6 +107,7 @@ type Definitions struct {
 	Theory    map[string]string // topic slug -> seeded theory markdown
 	Designs   map[string]string // design slug -> seeded "design X" walkthrough
 	Prep      map[string]string // company slug -> interview prep card
+	Arch      map[string]string // slug -> real-world architecture write-up
 }
 
 // Load reads and validates every definition file under dataDir. Missing
@@ -121,6 +122,7 @@ func Load(dataDir string) (*Definitions, error) {
 		Theory:    make(map[string]string),
 		Designs:   make(map[string]string),
 		Prep:      make(map[string]string),
+		Arch:      make(map[string]string),
 	}
 
 	if err := defs.loadTopics(filepath.Join(dataDir, "topics")); err != nil {
@@ -133,6 +135,9 @@ func Load(dataDir string) (*Definitions, error) {
 		return nil, err
 	}
 	if err := defs.loadMarkdown(filepath.Join(dataDir, "prep"), defs.Prep); err != nil {
+		return nil, err
+	}
+	if err := defs.loadMarkdown(filepath.Join(dataDir, "arch"), defs.Arch); err != nil {
 		return nil, err
 	}
 	if err := defs.loadDrills(filepath.Join(dataDir, "drills")); err != nil {

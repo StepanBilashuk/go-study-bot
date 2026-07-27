@@ -329,3 +329,19 @@
   depends_on: [caching]
   gate: "data structures, sorted-set leaderboard, rate limiting, pub/sub, durability"
   est_hours: 3
+
+- slug: deployment-release
+  track: system-design
+  name: Deployment & release strategies
+  priority: 42
+  depends_on: [observability]
+  gate: "blue-green vs canary vs rolling, feature flags, safe rollback, DB migrations without downtime"
+  est_hours: 3
+
+- slug: testing-strategy
+  track: system-design
+  name: Testing strategy for distributed systems
+  priority: 43
+  depends_on: [microservices-patterns]
+  gate: "test pyramid, contract tests, integration vs E2E, testing in prod, why mocks lie"
+  est_hours: 3
