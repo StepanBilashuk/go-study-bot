@@ -10,6 +10,7 @@ import (
 
 const helpText = `prepbot — interview-prep tracker
 
+Tap ☰ (left of the input) for every command, or /menu to pin the quick buttons.
 AI commands emit a prompt you run in YOUR Claude, then paste the JSON reply
 back here (like /newcompany → /importcompany). /cancel drops a pending paste.
 
@@ -49,7 +50,8 @@ func (b *Bot) handleHelp(ctx context.Context, _ *bot.Bot, update *models.Update)
 	if update.Message == nil {
 		return
 	}
-	b.reply(ctx, update.Message.Chat.ID, helpText)
+	// Install the quick-bar alongside the full list.
+	b.replyKb(ctx, update.Message.Chat.ID, helpText)
 }
 
 func (b *Bot) handleWhoami(ctx context.Context, _ *bot.Bot, update *models.Update) {

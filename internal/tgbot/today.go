@@ -23,7 +23,8 @@ func (b *Bot) handleToday(ctx context.Context, _ *bot.Bot, update *models.Update
 		b.reply(ctx, userID, "Could not build today: "+err.Error())
 		return
 	}
-	b.reply(ctx, userID, text)
+	// /today is a daily entry point — keep the quick-bar pinned.
+	b.replyKb(ctx, userID, text)
 }
 
 // buildToday assembles one user's daily plan: at most 3 topics (algorithms,

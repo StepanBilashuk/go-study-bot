@@ -113,12 +113,17 @@ func New(cfg config.Config, database *db.DB, defs *definitions.Definitions, ps *
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/help", bot.MatchTypeExact, b.handleHelp)
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/whoami", bot.MatchTypeExact, b.handleWhoami)
 	api.RegisterHandler(bot.HandlerTypeMessageText, "/cancel", bot.MatchTypeExact, b.handleCancel)
+	api.RegisterHandler(bot.HandlerTypeMessageText, "/menu", bot.MatchTypeExact, b.handleMenu)
 
 	return b, nil
 }
 
 // Start runs long polling plus the daily push scheduler until ctx is cancelled.
 func (b *Bot) Start(ctx context.Context) {
+	// Register the native command menu (the ☰ button + "/" autocomplete).
+	if _, err := b.api.SetMyCommands(ctx, &bot.SetMyCommandsParams{Commands: botCommands()}); err != nil {
+		slog.Error("set my commands", "err", err)
+	}
 	go b.runScheduler(ctx)
 	b.api.Start(ctx)
 }
@@ -202,14 +207,20 @@ func (b *Bot) handlePing(ctx context.Context, _ *bot.Bot, update *models.Update)
 	b.reply(ctx, update.Message.Chat.ID, "pong")
 }
 
-// handleDefault routes bare text by conversation mode, and nudges on unknown
-// commands.
-func (b *Bot) handleDefault(ctx context.Context, _ *bot.Bot, update *models.Update) {
+// handleDefault handles quick-keyboard button taps, routes bare text by
+// conversation mode, and nudges on unknown commands.
+func (b *Bot) handleDefault(ctx context.Context, api *bot.Bot, update *models.Update) {
 	if update.Message == nil {
 		return
 	}
 	chatID := update.Message.Chat.ID
 	text := strings.TrimSpace(update.Message.Text)
+
+	// Quick-keyboard button? Run the mapped command.
+	if cmd, ok := quickButtons[text]; ok {
+		b.runByCommand(ctx, api, update, cmd)
+		return
+	}
 
 	if strings.HasPrefix(text, "/") {
 		b.reply(ctx, chatID, "Unknown command. Send /help for the full list.")
