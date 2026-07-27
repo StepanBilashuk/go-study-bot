@@ -233,3 +233,11 @@
   depends_on: [caching]
   gate: "RAG pipeline, vector DB, semantic caching, model as an unreliable dependency"
   est_hours: 4
+
+- slug: object-oriented-design
+  track: system-design
+  name: Object-oriented / low-level design (LLD)
+  priority: 30
+  depends_on: []
+  gate: "class model, SOLID, patterns for parking-lot / elevator / a game"
+  est_hours: 4
