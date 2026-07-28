@@ -1,0 +1,15 @@
+# Amazon. Coding rounds + heavy Leadership-Principles behavioral (STAR mandatory).
+# Every behavioral answer must map to an LP with a measurable result.
+slug: amazon
+name: Amazon
+locations: [Berlin, Dublin, London, "Remote (EU, limited)"]
+stack: [Java, Python, Go, DynamoDB, AWS]
+interview_process:
+  - {stage: 1, name: Online assessment (coding), format: online, duration_min: 90}
+  - {stage: 2, name: Phone screen (coding + LP), format: call, duration_min: 60}
+  - {stage: 3, name: "Loop — 2 coding, system design, bar raiser (all LP-heavy)", format: onsite, duration_min: 300}
+required_topics: [arrays-hashing, trees, graphs, dynamic-programming, scaling-databases, caching]
+values: [customer-obsession, ownership, bias-for-action, dive-deep, deliver-results, are-right-a-lot]
+referral: false
+researched_at: 2026-07-28
+confidence: low

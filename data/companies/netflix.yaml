@@ -1,0 +1,16 @@
+# Netflix. Senior-only culture; systems + judgement over algo-grind.
+# Behavioral is judged against the culture memo (Freedom & Responsibility).
+slug: netflix
+name: Netflix
+locations: [Amsterdam, "Remote (EMEA, limited)"]
+stack: [Java, Kotlin, Python, Go, Cassandra, Kafka, gRPC]
+interview_process:
+  - {stage: 1, name: Recruiter screen, format: call, duration_min: 30}
+  - {stage: 2, name: Hiring manager (culture + experience), format: call, duration_min: 45}
+  - {stage: 3, name: Technical / practical coding, format: call, duration_min: 60}
+  - {stage: 4, name: Onsite — system design + deep dives, format: onsite, duration_min: 240}
+required_topics: [microservices-patterns, cdn-edge, caching, observability, replication, consistency-consensus]
+values: [freedom-and-responsibility, context-not-control, high-performance, ownership, candor]
+referral: false
+researched_at: 2026-07-28
+confidence: low

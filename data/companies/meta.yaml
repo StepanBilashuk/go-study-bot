@@ -1,0 +1,14 @@
+# Meta. LeetCode medium/hard fluency (fast), system design, behavioral ("is this a match").
+slug: meta
+name: Meta
+locations: [London, Dublin, "Remote (EU, limited)"]
+stack: [C++, Hack/PHP, Python, React, custom infra]
+interview_process:
+  - {stage: 1, name: Recruiter screen, format: call, duration_min: 30}
+  - {stage: 2, name: Technical screen (2 coding), format: call, duration_min: 45}
+  - {stage: 3, name: "Onsite — 2 coding, system design, behavioral", format: onsite, duration_min: 240}
+required_topics: [arrays-hashing, graphs, trees, dynamic-programming, caching, scaling-databases]
+values: [move-fast, impact, ownership, be-direct]
+referral: false
+researched_at: 2026-07-28
+confidence: low

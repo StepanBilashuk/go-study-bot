@@ -24,7 +24,8 @@ Daily loop
 Practice
   /quiz <slug>      emit a 10-item recognition quiz (do it in Claude; 8/10 = gate)
   /boss             system-design mock brief (once the gate is met)
-  /boss behavioral  behavioral mock, targeting your uncovered competencies
+  /boss <company>   tune the SD mock to an employer (e.g. /boss netflix)
+  /boss behavioral [company]   behavioral mock; add a company to use its values
   /designs          FAANG "design X" case studies (tap to open)
   /archs            real-world architectures (Spotify, YouTube, Netflix…)
   /prep <company>   per-company prep plan: /prep bolt|wolt|wise|google
